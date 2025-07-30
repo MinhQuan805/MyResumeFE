@@ -1,0 +1,30 @@
+@media (max-width: 900px) {
+    .btn-text {
+      display: none !important;
+    }
+  }
+
+@media (max-width: 700px) {
+    .btn-action-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+}
+.btn-controller {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+@media (max-width: 700px) {
+  .introduction-column {
+    display: none !important;
+  }
+}
+.no-effect-button {
+  border: none;
+  outline: none;
+  background: transparent;
+}
