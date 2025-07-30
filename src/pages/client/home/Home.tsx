@@ -1,11 +1,12 @@
 import { Card, Row, Col, Typography, Button, Steps } from 'antd';
 import './mission.css';
 import './product.css';
-import './article.css'
+import './article.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLightbulb, faPencilRuler, faSeedling, faShield } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
+
 const { Title, Paragraph } = Typography;
 
 const missions = [
@@ -16,37 +17,65 @@ const missions = [
 ];
 
 const products = [
-  { 
-    icon: <img src={'/image/home/Logo1.png'}/>,
-    image: <img src={'/image/home/Product1.png'}/>,
+  {
+    icon: <img src={'/image/home/Logo1.png'} />,
+    image: <img src={'/image/home/Product1.png'} />,
     name: 'Payments',
     title: 'Accept and optimize payments, globally',
     description: 'Tăng tỷ lệ chấp nhận thanh toán, cung cấp các phương thức thanh toán địa phương để tăng chuyển đổi, và giảm gian lận nhờ AI.',
   },
-  { 
-    icon: <img src={'/image/home/Logo2.png'}/>,
-    image: <img src={'/image/home/Product2.png'}/>,
+  {
+    icon: <img src={'/image/home/Logo2.png'} />,
+    image: <img src={'/image/home/Product2.png'} />,
     name: 'Billing',
     title: 'Capture recurring revenue',
     description: 'Quản lý giá cố định, theo mức sử dụng, mô hình lai, hóa đơn, và tự động hóa các hoạt động tài chính.',
   },
-  { 
-    icon: <img src={'/image/home/Logo3.png'}/>,
-    image: <img src={'/image/home/Product3.png'}/>,
+  {
+    icon: <img src={'/image/home/Logo3.png'} />,
+    image: <img src={'/image/home/Product3.png'} />,
     name: 'Connect',
     title: 'Set up multiparty payments and payouts',
     description: 'Tích hợp thanh toán vào nền tảng hoặc marketplace của bạn cho trải nghiệm thanh toán đầu-cuối.',
   },
-]
+];
 
 const articles = [
-  
-]
+  {
+    image: '/image/home/article1.jpg',
+    title: 'Tại sao BAC quan trọng với nền kinh tế nhưng giá trị lại kém VÀNG?',
+    description: '',
+  },
+  {
+    image: '/image/home/article2.jpg',
+    title: 'Vì sao hackathon trong Web3 mang lại cơ hội rộng mở hơn?',
+    description: '',
+  },
+  {
+    image: '/image/home/article3.jpg',
+    title: 'Network Planning and Design Best Practices',
+    description: '',
+  },
+];
+
 function Home() {
   const [currentStep, setCurrentStep] = useState(0);
+  const [currentArticle, setCurrentArticle] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 600);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
-    <>
+    <div style={{ backgroundColor: '#fff' }}>
+      {/* Missions */}
       <div className="missions-container">
         <div className="missions-section">
           <Row gutter={0}>
@@ -65,6 +94,7 @@ function Home() {
         </div>
       </div>
 
+      {/* Products */}
       <div className="product-container">
         <div className="product-section">
           <div className="product-transition">
@@ -74,23 +104,13 @@ function Home() {
               onChange={setCurrentStep}
               direction="horizontal"
               responsive
-              items={products.map(() => ({
-                title: '',
-              }))}
+              items={products.map(() => ({ title: '' }))}
               className="product-step"
             />
-            <Button
-              onClick={() => setCurrentStep((prev) => (prev === 0 ? products.length - 1 : prev - 1))}
-              disabled={products.length <= 1}
-              className='button-transition'
-            >
+            <Button onClick={() => setCurrentStep((prev) => (prev === 0 ? products.length - 1 : prev - 1))} className='button-transition'>
               <LeftOutlined />
             </Button>
-            <Button
-              onClick={() => setCurrentStep((prev) => (prev === products.length - 1 ? 0 : prev + 1))}
-              disabled={products.length <= 1}
-              className='button-transition'
-            >
+            <Button onClick={() => setCurrentStep((prev) => (prev === products.length - 1 ? 0 : prev + 1))} className='button-transition'>
               <RightOutlined />
             </Button>
           </div>
@@ -102,15 +122,9 @@ function Home() {
                   {products[currentStep].icon}
                   <span className="product-label">{products[currentStep].name}</span>
                 </div>
-                <Title level={1} className="product-title">
-                  {products[currentStep].title}
-                </Title>
-                <Paragraph className="product-description">
-                  {products[currentStep].description}
-                </Paragraph>
-                <Button type="primary" size="large" className="product-button">
-                  Learn more
-                </Button>
+                <Title level={1} className="product-title">{products[currentStep].title}</Title>
+                <Paragraph className="product-description">{products[currentStep].description}</Paragraph>
+                <Button type="primary" size="large" className="product-button">Learn more</Button>
               </div>
             </Col>
             <Col xs={24} lg={14}>
@@ -122,9 +136,64 @@ function Home() {
         </div>
       </div>
 
-    </>
+      {/* Highlight Article */}
+      <div className="article-container">
+        <div className="article-highlight-wrapper">
+          <Card className="article-card">
+            <Row align="middle" gutter={[24, 24]}>
+              <Col xs={24} md={13}>
+                <div className="article-highlight-content">
+                  <Title level={2}>Hành trình tích lũy kiến thức và tài chính của tôi</Title>
+                  <Paragraph className='product-description'>
+                    Việc phát triển năng lực là một hành trình dài, và đây là nơi để tôi tiếp tục phá triển kỹ năng của mình
+                  </Paragraph>
+                  <Button className="article-button" style={{ fontSize: 17, width: 150, height: 40 }}>Tìm hiểu</Button>
+                </div>
+              </Col>
+              <Col xs={24} md={11}>
+                <div className="article-highlight-image">
+                  <img src="/image/home/business.jpg" alt="Business Plan" />
+                </div>
+              </Col>
+            </Row>
+          </Card>
+        </div>
+
+        {/* Bài viết nổi bật */}
+        <div className="mobile-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16, marginTop: 30 }}>
+          <Title level={3} style={{ margin: 0 }}>Bài viết nổi bật</Title>
+          {isMobile && (
+            <div className="product-transition">
+              <Button onClick={() => setCurrentArticle(prev => (prev === 0 ? articles.length - 1 : prev - 1))} className="button-transition">
+                <LeftOutlined />
+              </Button>
+              <Button onClick={() => setCurrentArticle(prev => (prev === articles.length - 1 ? 0 : prev + 1))} className="button-transition">
+                <RightOutlined />
+              </Button>
+            </div>
+        )}
+        </div>
+
+        <Row gutter={[24, 24]}>
+          {(isMobile ? [articles[currentArticle]] : articles).map((article, idx) => (
+            <Col xs={24} sm={12} md={8} key={idx}>
+              <Card className="article-card">
+                <div className="article-image">
+                  <img src={article.image} alt={article.title} />
+                </div>
+                <div className="article-content">
+                  <div className="article-title">{article.title}</div>
+                  <Button className="article-button" style={{ background: '#eaf3fa', color: '#222' }}>
+                    Đọc bài viết
+                  </Button>
+                </div>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+      </div>
+    </div>
   );
 }
-
 
 export default Home;

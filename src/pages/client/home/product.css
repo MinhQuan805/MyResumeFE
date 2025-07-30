@@ -3,6 +3,7 @@
 .product-container {
     padding: 0 40px;
     background: #fff;
+    margin-bottom: 80px;
 }
 
 .product-section {
@@ -91,6 +92,7 @@
     align-items: center;
     height: 35px;
     overflow-x: auto;
+    background: none;
 }
 .product-transition .button-transition {
     border-radius: 100px;
