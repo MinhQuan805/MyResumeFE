@@ -1,6 +1,7 @@
-import { Card, Row, Col, Typography, Button } from 'antd';
+import { Card, Row, Col, Typography, Button, Steps } from 'antd';
 import './mission.css';
 import './product.css';
+import './article.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLightbulb, faPencilRuler, faSeedling, faShield } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
@@ -38,6 +39,9 @@ const products = [
   },
 ]
 
+const articles = [
+  
+]
 function Home() {
   const [currentStep, setCurrentStep] = useState(0);
 
@@ -63,22 +67,33 @@ function Home() {
 
       <div className="product-container">
         <div className="product-section">
-        <div className="product-transition">
-          <Button
-            onClick={() => setCurrentStep((prev) => (prev === 0 ? products.length - 1 : prev - 1))}
-            disabled={products.length <= 1}
-            className='button-transition'
-          >
-            <LeftOutlined />
-          </Button>
-          <Button
-            onClick={() => setCurrentStep((prev) => (prev === products.length - 1 ? 0 : prev + 1))}
-            disabled={products.length <= 1}
-            className='button-transition'
-          >
-            <RightOutlined />
-          </Button>
-        </div>
+          <div className="product-transition">
+            <Steps
+              progressDot
+              current={currentStep}
+              onChange={setCurrentStep}
+              direction="horizontal"
+              responsive
+              items={products.map(() => ({
+                title: '',
+              }))}
+              className="product-step"
+            />
+            <Button
+              onClick={() => setCurrentStep((prev) => (prev === 0 ? products.length - 1 : prev - 1))}
+              disabled={products.length <= 1}
+              className='button-transition'
+            >
+              <LeftOutlined />
+            </Button>
+            <Button
+              onClick={() => setCurrentStep((prev) => (prev === products.length - 1 ? 0 : prev + 1))}
+              disabled={products.length <= 1}
+              className='button-transition'
+            >
+              <RightOutlined />
+            </Button>
+          </div>
 
           <Row gutter={[48, 0]} align="middle">
             <Col xs={24} lg={10}>
@@ -106,6 +121,7 @@ function Home() {
           </Row>
         </div>
       </div>
+
     </>
   );
 }

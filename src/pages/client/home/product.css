@@ -88,6 +88,9 @@
     display: flex;
     gap: 10px;
     justify-content: flex-end;
+    align-items: center;
+    height: 35px;
+    overflow-x: auto;
 }
 .product-transition .button-transition {
     border-radius: 100px;
@@ -95,14 +98,16 @@
     height: 35px;
     outline: none;
 }
+
+
+.product-step {
+    max-width: max-content;
+    margin: auto;
+}
 /* Responsive for Products */
 @media (max-width: 992px) {
     .product-title {
         font-size: 36px !important;
-    }
-
-    .product-section {
-        margin-bottom: 40px;
     }
 }
 
@@ -129,5 +134,9 @@
 
     .product-image {
         padding: 20px 0;
+    }
+
+    .ant-steps.product-step {
+        display: none;
     }
 }
