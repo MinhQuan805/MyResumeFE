@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import api from '../../../config/api.ts';
 import type { UserType, UserResponse } from '../../../types/user.type.ts';
-import { Table,Form, Radio, Badge, Button, Popconfirm, Input, Modal, Dropdown, Menu } from 'antd';
+import { Table,Form, Radio, Badge, Button, Popconfirm, Input, Modal } from 'antd';
 import type { TableProps,RadioChangeEvent } from 'antd';
 import type { TableRowSelection } from 'antd/es/table/interface';
 import { useDispatch, useSelector } from 'react-redux';
 import { displayAlert } from '../../../redux/action/alert.tsx';
 import AlertInfo from '../../../components/AlertInfo.tsx';
-import { DeleteOutlined, MoreOutlined, PlusOutlined } from '@ant-design/icons';
+import { PlusOutlined } from '@ant-design/icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import './user.css';
