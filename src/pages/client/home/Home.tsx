@@ -1,10 +1,10 @@
-import { Card, Row, Col, Typography, Button, Steps } from 'antd';
+import { Card, Row, Col, Typography, Button } from 'antd';
 import './mission.css';
 import './product.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLightbulb, faPencilRuler, faSeedling, faShield } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
-
+import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 const { Title, Paragraph } = Typography;
 
 const missions = [
@@ -62,16 +62,24 @@ function Home() {
       </div>
 
       <div className="product-container">
-        <Steps
-          current={currentStep}
-          onChange={setCurrentStep}
-          items={products.map(p => ({
-            title: p.name,
-          }))}
-          style={{ maxWidth: 800, margin: '0 auto 40px' }}
-        />
-
         <div className="product-section">
+        <div className="product-transition">
+          <Button
+            onClick={() => setCurrentStep((prev) => (prev === 0 ? products.length - 1 : prev - 1))}
+            disabled={products.length <= 1}
+            className='button-transition'
+          >
+            <LeftOutlined />
+          </Button>
+          <Button
+            onClick={() => setCurrentStep((prev) => (prev === products.length - 1 ? 0 : prev + 1))}
+            disabled={products.length <= 1}
+            className='button-transition'
+          >
+            <RightOutlined />
+          </Button>
+        </div>
+
           <Row gutter={[48, 0]} align="middle">
             <Col xs={24} lg={10}>
               <div className="product-content">
