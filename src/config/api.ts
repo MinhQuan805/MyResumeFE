@@ -14,7 +14,6 @@ const refreshInstance = axios.create({
 
 // Xác thực ở trang admin
 // Interceptor: Gắn token vào mọi request
-let accessToken = localStorage.getItem('accessToken');
 
 api.interceptors.request.use(
   (config) => {
@@ -48,7 +47,6 @@ api.interceptors.response.use(
 
         // Cập nhật localStorage và biến bộ nhớ tạm
         localStorage.setItem('accessToken', newAccessToken);
-        accessToken = newAccessToken;
 
         // Gắn token mới và gửi lại request
         originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
@@ -56,7 +54,6 @@ api.interceptors.response.use(
       } catch (refreshError) {
         // Token không còn hợp lệ, xóa token và báo lỗi
         localStorage.removeItem('accessToken');
-        accessToken = null;
         // (Tùy chọn) Redirect về trang login tại đây
         return Promise.reject(refreshError);
       }
