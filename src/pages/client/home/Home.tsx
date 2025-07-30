@@ -1,5 +1,6 @@
 import { Card, Row, Col, Typography, Button } from 'antd';
-import './home.css';
+import './mission.css';
+import './product.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLightbulb, faPencilRuler, faSeedling, faShield } from '@fortawesome/free-solid-svg-icons';
 
@@ -37,58 +38,68 @@ const products = [
 ]
 
 function Home() {
+  const [currentStep, setCurrentStep] = useState(0);
+
   return (
     <>
-      <div className="home-container">
+      <div className="missions-container">
         <div className="missions-section">
           <Row gutter={0}>
             {missions.map((m, i) => (
               <Col xs={24} sm={12} md={6} key={i}>
-                  <Card className="mission-home-card">
-                    <div className="mission-home-header">
-                      <FontAwesomeIcon icon={m.icon} className="mission-home-icon" />
-                      <Title level={3} className="mission-home-title">{m.title}</Title>
-                    </div>
-                    <Paragraph className="mission-home-description">{m.description}</Paragraph>
-                  </Card>
+                <Card className="mission-home-card">
+                  <div className="mission-home-header">
+                    <FontAwesomeIcon icon={m.icon} className="mission-home-icon" />
+                    <Title level={3} className="mission-home-title">{m.title}</Title>
+                  </div>
+                  <Paragraph className="mission-home-description">{m.description}</Paragraph>
+                </Card>
               </Col>
             ))}
           </Row>
         </div>
       </div>
-      
-      <div className="product-home">
-        {products.map((product, index) => (
-          <div key={index} className="product-section">
-            <Row gutter={[48, 0]} align="middle">
-              <Col xs={24} lg={12}>
-                <div className="product-content">
-                  <div className="product-header">
-                    {product.icon}
-                    <span className="product-label">{product.name}</span>
-                  </div>
-                  <Title level={1} className="product-title">
-                    {product.title}
-                  </Title>
-                  <Paragraph className="product-description">
-                    {product.description}
-                  </Paragraph>
-                  <Button type="primary" size="large" className="product-button">
-                    Learn more
-                  </Button>
+
+      <div className="product-container">
+        <Steps
+          current={currentStep}
+          onChange={setCurrentStep}
+          items={products.map(p => ({
+            title: p.name,
+          }))}
+          style={{ maxWidth: 800, margin: '0 auto 40px' }}
+        />
+
+        <div className="product-section">
+          <Row gutter={[48, 0]} align="middle">
+            <Col xs={24} lg={10}>
+              <div className="product-content">
+                <div className="product-header">
+                  {products[currentStep].icon}
+                  <span className="product-label">{products[currentStep].name}</span>
                 </div>
-              </Col>
-              <Col xs={24} lg={12}>
-                <div className="product-image">
-                  {product.image}
-                </div>
-              </Col>
-            </Row>
-          </div>
-        ))}
+                <Title level={1} className="product-title">
+                  {products[currentStep].title}
+                </Title>
+                <Paragraph className="product-description">
+                  {products[currentStep].description}
+                </Paragraph>
+                <Button type="primary" size="large" className="product-button">
+                  Learn more
+                </Button>
+              </div>
+            </Col>
+            <Col xs={24} lg={14}>
+              <div className="product-image">
+                {products[currentStep].image}
+              </div>
+            </Col>
+          </Row>
+        </div>
       </div>
     </>
   );
 }
+
 
 export default Home;
