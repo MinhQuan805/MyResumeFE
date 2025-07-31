@@ -5,7 +5,7 @@ import './article-home.css';
 import '../style/main.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLightbulb, faPencilRuler, faSeedling, faShield } from '@fortawesome/free-solid-svg-icons';
-import { useState, useEffect } from 'react';
+import { useState  } from 'react';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 
 const { Title, Paragraph } = Typography;
@@ -64,18 +64,6 @@ const articles = [
 
 function Home() {
   const [currentStep, setCurrentStep] = useState(0);
-  const [currentArticle, setCurrentArticle] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 600);
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   return (
     <div style={{ backgroundColor: '#fff' }}>
