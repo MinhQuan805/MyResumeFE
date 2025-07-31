@@ -1,7 +1,8 @@
 import { Card, Row, Col, Typography, Button, Steps } from 'antd';
-import './mission.css';
-import './product.css';
-import './article.css';
+import './mission-home.css';
+import './product-home.css';
+import './article-home.css';
+import '../style/main.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLightbulb, faPencilRuler, faSeedling, faShield } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect } from 'react';
@@ -42,19 +43,22 @@ const products = [
 
 const articles = [
   {
+    tag: "Finance",
     image: '/image/home/article1.jpg',
-    title: 'Tại sao BAC quan trọng với nền kinh tế nhưng giá trị lại kém VÀNG?',
-    description: '',
+    title: 'Tại sao BẠC quan trọng với nền kinh tế nhưng giá trị lại kém VÀNG?',
+    introduction: 'Việc phát triển năng lực là một hành trình dài, và đây là nơi để tôi tiếp tục phá triển kỹ năng của mình Việc phát triển năng lực là một hành trình dài, và đây là nơi để tôi tiếp tục phá triển kỹ năng của mình Dù đóng vai trò thiết yếu trong sản xuất và công nghiệp, bạc vẫn không đạt được giá trị như vàng trên thị trường tài chính. Vì sao lại như vậy?',
   },
   {
+    tag: "Technology",
     image: '/image/home/article2.jpg',
     title: 'Vì sao hackathon trong Web3 mang lại cơ hội rộng mở hơn?',
-    description: '',
+    introduction: 'Hackathon trong lĩnh vực Web3 không chỉ là cuộc thi, mà còn là bệ phóng giúp lập trình viên kết nối, khởi nghiệp và tiếp cận nhà đầu tư tiềm năng.',
   },
   {
+    tag: "Finance",
     image: '/image/home/article3.jpg',
     title: 'Network Planning and Design Best Practices',
-    description: '',
+    introduction: 'Việc lập kế hoạch và thiết kế mạng lưới hiệu quả là yếu tố then chốt giúp doanh nghiệp tối ưu hiệu suất và bảo mật hạ tầng công nghệ.',
   },
 ];
 
@@ -95,9 +99,9 @@ function Home() {
       </div>
 
       {/* Products */}
-      <div className="product-container">
-        <div className="product-section">
-          <div className="product-transition">
+      <div className="product-home-container">
+        <div className="product-home-section">
+          <div className="product-home-transition">
             <Steps
               progressDot
               current={currentStep}
@@ -105,30 +109,30 @@ function Home() {
               direction="horizontal"
               responsive
               items={products.map(() => ({ title: '' }))}
-              className="product-step"
+              className="product-home-step"
             />
-            <Button onClick={() => setCurrentStep((prev) => (prev === 0 ? products.length - 1 : prev - 1))} className='button-transition'>
+            <Button onClick={() => setCurrentStep((prev) => (prev === 0 ? products.length - 1 : prev - 1))} className="button-transition">
               <LeftOutlined />
             </Button>
-            <Button onClick={() => setCurrentStep((prev) => (prev === products.length - 1 ? 0 : prev + 1))} className='button-transition'>
+            <Button onClick={() => setCurrentStep((prev) => (prev === products.length - 1 ? 0 : prev + 1))} className="button-transition">
               <RightOutlined />
             </Button>
           </div>
 
           <Row gutter={[48, 0]} align="middle">
             <Col xs={24} lg={10}>
-              <div className="product-content">
-                <div className="product-header">
+              <div className="product-home-content">
+                <div className="product-home-header">
                   {products[currentStep].icon}
-                  <span className="product-label">{products[currentStep].name}</span>
+                  <span className="product-home-label">{products[currentStep].name}</span>
                 </div>
-                <Title level={1} className="product-title">{products[currentStep].title}</Title>
-                <Paragraph className="product-description">{products[currentStep].description}</Paragraph>
-                <Button type="primary" size="large" className="product-button">Learn more</Button>
+                <Title level={1} className="product-home-title">{products[currentStep].title}</Title>
+                <Paragraph className="product-home-description">{products[currentStep].description}</Paragraph>
+                <Button type="primary" size="large" className="product-home-button">Learn more</Button>
               </div>
             </Col>
             <Col xs={24} lg={14}>
-              <div className="product-image">
+              <div className="product-home-image">
                 {products[currentStep].image}
               </div>
             </Col>
@@ -138,11 +142,11 @@ function Home() {
 
       {/* Highlight Article */}
       <div className="article-container">
-        <div className="article-highlight-wrapper">
-          <Card className="article-card">
+        <div className="article-home-wrapper">
+          <Card className="article-home-card">
             <Row align="middle" gutter={[24, 24]}>
               <Col xs={24} md={13}>
-                <div className="article-highlight-content">
+                <div className="article-home-content">
                   <Title level={2}>Hành trình tích lũy kiến thức và tài chính của tôi</Title>
                   <Paragraph className='product-description'>
                     Việc phát triển năng lực là một hành trình dài, và đây là nơi để tôi tiếp tục phá triển kỹ năng của mình
@@ -151,7 +155,7 @@ function Home() {
                 </div>
               </Col>
               <Col xs={24} md={11}>
-                <div className="article-highlight-image">
+                <div className="article-home-image">
                   <img src="/image/home/business.jpg" alt="Business Plan" />
                 </div>
               </Col>
@@ -160,37 +164,27 @@ function Home() {
         </div>
 
         {/* Bài viết nổi bật */}
-        <div className="mobile-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16, marginTop: 30 }}>
-          <Title level={3} style={{ margin: 0 }}>Bài viết nổi bật</Title>
-          {isMobile && (
-            <div className="product-transition">
-              <Button onClick={() => setCurrentArticle(prev => (prev === 0 ? articles.length - 1 : prev - 1))} className="button-transition">
-                <LeftOutlined />
-              </Button>
-              <Button onClick={() => setCurrentArticle(prev => (prev === articles.length - 1 ? 0 : prev + 1))} className="button-transition">
-                <RightOutlined />
-              </Button>
-            </div>
-        )}
-        </div>
-
-        <Row gutter={[24, 24]}>
-          {(isMobile ? [articles[currentArticle]] : articles).map((article, idx) => (
-            <Col xs={24} sm={12} md={8} key={idx}>
-              <Card className="article-card">
+        <div className='article-highlight'>
+          {articles.map((article) => (
+            <Row gutter={[24, 24]} className='article-row'>
+              <Col xs={24} md={6}>
                 <div className="article-image">
                   <img src={article.image} alt={article.title} />
                 </div>
+              </Col>
+              <Col xs={24} md={18}>
                 <div className="article-content">
+                  <Paragraph style={{color: '#919191', marginBottom: 3}}>{article.tag}</Paragraph>
                   <div className="article-title">{article.title}</div>
-                  <Button className="article-button" style={{ background: '#eaf3fa', color: '#222' }}>
+                  <Paragraph className="article-introduction truncate-multiline">{article.introduction}</Paragraph>
+                  <Button className="article-button">
                     Đọc bài viết
                   </Button>
                 </div>
-              </Card>
-            </Col>
+              </Col>
+            </Row>
           ))}
-        </Row>
+        </div>
       </div>
     </div>
   );

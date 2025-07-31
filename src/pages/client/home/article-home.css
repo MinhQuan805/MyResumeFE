@@ -1,0 +1,129 @@
+.article-container {
+  padding: 0 50px;
+  background: #fff;
+}
+
+.article-highlight {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.article-row {
+  width: 100%;
+  max-width: 1000px;
+  margin: 30px 0;
+}
+
+.article-content {
+  padding: 10px;
+  width: 700px;
+}
+
+.article-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  width: 100%;
+  height: 100%;
+  max-height: 50px;
+  color: #111;
+}
+
+.article-button {
+  border-radius: 24px;
+  padding: 6px 20px;
+  font-weight: 600;
+  font-size: 14px;
+  background: #fff !important;
+  border: 1px solid #919191;
+  outline: none !important;
+}
+.article-button:hover {
+  color: #40a9ff !important;
+  border-color: #40a9ff !important;
+}
+.article-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.article-image img {
+  width: 250px;
+  height: 180px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+@media (max-width: 976px) {
+  .article-content {
+    padding: 10px;
+    width: 500px;
+    margin-left: 30px;
+  }
+}
+@media (max-width: 576px) {
+  .article-image img {
+    width: 350px;
+  }
+  .article-container {
+    padding: 0;
+  }
+  .article-content {
+    padding: 10px;
+    width: 400px;
+  }
+  .article-title {
+    margin-bottom: 20px;
+  }
+  .article-highlight {
+    margin-top: 40px;
+  }
+}
+/* To Home Artilce */
+.article-home-wrapper {
+  padding: 10px 10px;
+}
+
+
+.article-home-content {
+  padding: 20px;
+}
+
+.article-home-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.article-home-image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  height: auto;
+}
+
+.article-home-card {
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  background: #ffffff;
+}
+
+@media (max-width: 976px) {
+  .article-home-image img {
+    width: 300px;
+  }
+  .article-home-content {
+    padding: 0px !important;
+  }
+}
+@media (max-width: 576px) {
+  .article-home-image img {
+    width: 350px;
+  }
+}
