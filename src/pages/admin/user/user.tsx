@@ -8,8 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { displayAlert } from '../../../redux/action/alert.tsx';
 import AlertInfo from '../../../components/AlertInfo.tsx';
 import { PlusOutlined } from '@ant-design/icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FaTrash } from 'react-icons/fa';
 import './user.css';
 import type { RadioGroupProps } from 'antd';
 import Action from '../../../components/Action.tsx';
@@ -197,7 +196,7 @@ function User() {
                     <Popconfirm title="Bạn có chắc chắn muốn xóa người dùng đã chọn?" 
                                 onConfirm={() => handleDeleteSelected()}>
                         <Button style={{ color: 'red', marginLeft: 20, borderRadius: 40, border: '1px solid rgb(255, 0, 0)'}} 
-                            size="middle" icon={<FontAwesomeIcon icon={faTrash} />} >
+                            size="middle" icon={<FaTrash />} >
                             <span className="btn-text">Xóa</span></Button>
                     </Popconfirm>
                 )}

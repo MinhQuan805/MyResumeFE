@@ -6,8 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import type { ArticleType } from "../../../types/article.type";
 import { Button, Form, Popconfirm, Radio, Table, type RadioChangeEvent, type TableProps } from "antd";
 import AlertInfo from "../../../components/AlertInfo";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faTrash, faTrashRestore } from "@fortawesome/free-solid-svg-icons";
+import { FaArrowLeft, FaTrash, FaTrashRestore } from 'react-icons/fa';
 import './article.css';
 import Action from "../../../components/Action";
 import { useNavigate } from "react-router-dom";
@@ -109,7 +108,7 @@ function Trash() {
     return (
         <>  
             <div style={{ display: 'flex', alignItems: 'center', gap: 24, marginBottom: 20 }}>
-                <Button onClick={() => navigate('/admin/article')} style={{ borderRadius: 90, color: 'black', border: '0.5px solid rgb(112, 112, 112)', outline: 'none', background: 'transparent'}} icon={<FontAwesomeIcon icon={faArrowLeft} />}></Button>  
+                <Button onClick={() => navigate('/admin/article')} style={{ borderRadius: 90, color: 'black', border: '0.5px solid rgb(112, 112, 112)', outline: 'none', background: 'transparent'}} icon={<FaArrowLeft />}></Button>  
                 <Form layout="inline" className="table-demo-control-bar" style={{ marginBottom: 0 }}>
                     <Form.Item label="Size">
                         <Radio.Group value={size} onChange={handleSizeChange}>
@@ -121,12 +120,12 @@ function Trash() {
                 </Form>
                 <Popconfirm title="Bạn có chắc chắn muốn xóa vĩnh viễn bài viết đã chọn?" onConfirm={() => handleDeleteSelected()}>
                     <Button style={{ color: 'red', marginLeft: 20, borderRadius: 40, border: '1px solid rgb(255, 0, 0)'}} 
-                        size="middle" icon={<FontAwesomeIcon icon={faTrash} />} >
+                        size="middle" icon={<FaTrash />} >
                         <span className="btn-text">Xóa</span></Button>
                 </Popconfirm>
                 <Button onClick={handleRecoverySelected} 
                         style={{ borderRadius: 45, color: 'green', border: '1px solid #00ff4cff'}} 
-                        size="middle" icon={<FontAwesomeIcon icon={faTrashRestore} />}>Phục hồi</Button>
+                        size="middle" icon={<FaTrashRestore />}>Phục hồi</Button>
                 <AlertInfo alert={alert}/>
             </div>
             <Table {...tableProps} loading={loading} rowSelection={rowSelection} 

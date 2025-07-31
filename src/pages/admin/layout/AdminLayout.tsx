@@ -4,8 +4,7 @@ import { Outlet, useNavigate } from 'react-router-dom';
 const { Header, Content, Footer, Sider } = Layout;
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import './layout.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faNewspaper, faPlus, faTrash, faUser } from '@fortawesome/free-solid-svg-icons';
+import { FaNewspaper, FaPlus, FaTrash, FaUser } from 'react-icons/fa';
 import { useLocation } from 'react-router-dom';
 
 function AdminLayout() {
@@ -19,24 +18,24 @@ function AdminLayout() {
     const items = [
         {
             label: 'Bài viết',
-            icon: <FontAwesomeIcon icon={faNewspaper} />,
+            icon: <FaNewspaper />,
             key: 'article',
             children: [
                 {
                     label: 'Danh sách',
-                    icon: <FontAwesomeIcon icon={faNewspaper} />,
+                    icon: <FaNewspaper />,
                     key: '/admin/article',
                     onClick: () => navigate('/admin/article'),
                 },
                 {
                     label: 'Tạo mới',
-                    icon: <FontAwesomeIcon icon={faPlus} />,
+                    icon: <FaPlus />,
                     key: '/admin/article/create',
                     onClick: () => navigate('/admin/article/create'),
                 },
                 {
                     label: 'Thùng rác',
-                    icon: <FontAwesomeIcon icon={faTrash} />,
+                    icon: <FaTrash />,
                     key: '/admin/article/trash',
                     onClick: () => navigate('/admin/article/trash'),
                 },
@@ -44,7 +43,7 @@ function AdminLayout() {
         },
         {
             label: 'Tài khoản',
-            icon: <FontAwesomeIcon icon={faUser} />,
+            icon: <FaUser />,
             key: '/admin/user',
             onClick: () => navigate('/admin/user'),
         },

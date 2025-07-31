@@ -1,21 +1,22 @@
-import { Card, Row, Col, Typography, Button, Steps } from 'antd';
+import { Card, Row, Col, Typography, Button, Steps, Input, Form } from 'antd';
 import './mission-home.css';
 import './product-home.css';
 import './article-home.css';
-import '../style/main.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLightbulb, faPencilRuler, faSeedling, faShield } from '@fortawesome/free-solid-svg-icons';
-import { useState  } from 'react';
-import { LeftOutlined, RightOutlined } from '@ant-design/icons';
+import './contact.css';
+import '../style/main.css';
+import { useState } from 'react';
+import { EnvironmentOutlined, LeftOutlined, MailOutlined, PhoneOutlined, RightOutlined } from '@ant-design/icons';
+import { FaLightbulb, FaPencilRuler, FaSeedling, FaShieldAlt, FaLinkedinIn, FaFacebookF } from 'react-icons/fa';
+import { TbBrandGithubFilled } from 'react-icons/tb';
 
 const { Title, Paragraph } = Typography;
 
 const missions = [
-  { icon: faLightbulb, title: 'Solve', description: 'Ứng dụng công nghệ để giải quyết các vấn đề thực tế một cách hiệu quả.' },
-  { icon: faPencilRuler, title: 'UX', description: 'Phát triển sản phẩm mượt mà, thân thiện và hữu ích cho người dùng.' },
-  { icon: faSeedling, title: 'Grow', description: 'Liên tục học hỏi, cập nhật công nghệ và nâng cao kỹ năng.' },
-  { icon: faShield, title: 'Secure', description: 'Đảm bảo chất lượng mã, hiệu suất ổn định và bảo mật dữ liệu.' }
-];
+  { icon: <FaLightbulb className="mission-home-icon" />, title: 'Solve', description: 'Ứng dụng công nghệ để giải quyết các vấn đề thực tế một cách hiệu quả.' },
+  { icon: <FaPencilRuler className="mission-home-icon" />, title: 'UX', description: 'Phát triển sản phẩm mượt mà, thân thiện và hữu ích cho người dùng.' },
+  { icon: <FaSeedling className="mission-home-icon" />, title: 'Grow', description: 'Liên tục học hỏi, cập nhật công nghệ và nâng cao kỹ năng.' },
+  { icon: <FaShieldAlt className="mission-home-icon" />, title: 'Secure', description: 'Đảm bảo chất lượng mã, hiệu suất ổn định và bảo mật dữ liệu.' }
+];  
 
 const products = [
   {
@@ -75,7 +76,7 @@ function Home() {
               <Col xs={24} sm={12} md={6} key={i}>
                 <Card className="mission-home-card">
                   <div className="mission-home-header">
-                    <FontAwesomeIcon icon={m.icon} className="mission-home-icon" />
+                    {m.icon}
                     <Title level={3} className="mission-home-title">{m.title}</Title>
                   </div>
                   <Paragraph className="mission-home-description">{m.description}</Paragraph>
@@ -173,6 +174,63 @@ function Home() {
             </Row>
           ))}
         </div>
+      </div>
+      <div className="contact-container">
+        <Row className="contact-wrapper">
+          {/* Left - Contact Info */}
+          <Col xs={24} md={10} className="contact-info">
+            <h2>Thông tin liên hệ</h2>
+            <div className="contact-detail">
+              <PhoneOutlined />
+              <span>0946372131</span>
+            </div>
+            <div className="contact-detail">
+              <MailOutlined />
+              <span>minhquan8052006@gmail.com</span>
+            </div>
+            <div className="contact-detail">
+              <EnvironmentOutlined />
+              <span>Quận Bình Thành, Thành Phố Hồ Chí Minh</span>
+            </div>
+            <div className="contact-icons">
+              <div className="contact-icons">
+                <Button href="https://www.linkedin.com/in/qu%C3%A2n-v%C3%B5-821704325/" icon={<FaLinkedinIn style={{ color: '#fff' }} />} />
+                <Button href="https://github.com/MinhQuan805" icon={<TbBrandGithubFilled style={{ color: '#fff', height: 20, width: 20 }} />} />
+                <Button href="https://www.facebook.com/quan.minh.780514/" icon={<FaFacebookF style={{ color: '#fff' }} />} />
+              </div>
+
+            </div>
+          </Col>
+
+          {/* Right - Form */}
+          <Col xs={24} md={14} className="contact-form">
+            <Form layout="vertical">
+              <Row gutter={16}>
+                <Col span={12}>
+                  <Form.Item label="Họ và tên" name="name">
+                    <Input bordered={false} className="underline-input" />
+                  </Form.Item>
+                </Col>
+                <Col span={12}>
+                  <Form.Item label="Email" name="email">
+                    <Input bordered={false} className="underline-input" />
+                  </Form.Item>
+                </Col>
+              </Row>
+              <Form.Item label="Tiêu đề" name="subject">
+                <Input bordered={false} className="underline-input" />
+              </Form.Item>
+              <Form.Item label="Lời nhắn" name="message">
+                <Input.TextArea rows={5} />
+              </Form.Item>
+              <Form.Item>
+                <Button type="primary" htmlType="submit" className="send-button">
+                  Gửi
+                </Button>
+              </Form.Item>
+            </Form>
+          </Col>
+        </Row>
       </div>
     </div>
   );
