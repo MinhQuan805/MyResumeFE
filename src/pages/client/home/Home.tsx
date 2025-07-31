@@ -2,13 +2,13 @@ import { Card, Row, Col, Typography, Button, Steps, Input, Form } from 'antd';
 import './mission-home.css';
 import './product-home.css';
 import './article-home.css';
-import './contact.css';
+import './contact-home.css';
+import './intro-home.css';
 import '../style/main.css';
 import { useState } from 'react';
 import { EnvironmentOutlined, LeftOutlined, MailOutlined, PhoneOutlined, RightOutlined } from '@ant-design/icons';
 import { FaLightbulb, FaPencilRuler, FaSeedling, FaShieldAlt, FaLinkedinIn, FaFacebookF } from 'react-icons/fa';
 import { TbBrandGithubFilled } from 'react-icons/tb';
-
 const { Title, Paragraph } = Typography;
 
 const missions = [
@@ -63,11 +63,42 @@ const articles = [
   },
 ];
 
+
 function Home() {
   const [currentStep, setCurrentStep] = useState(0);
 
+  const handleDownload = () => {
+    const link = document.createElement('a');
+    link.href = `/files/CV.pdf`; 
+    link.download = 'CV.pdf';
+    link.click();
+  };
   return (
     <div style={{ backgroundColor: '#fff' }}>
+      <div className="intro-container">
+        <Row gutter={[32, 32]} align="middle">
+          <Col xs={24} md={12}>
+            <Title level={2} className="intro-title">
+              Hello, welcome bạn<br />Mình là Minh Quân
+            </Title>
+            <Paragraph className="intro-description">
+              Join the millions of companies that use Stripe to accept payments online and in person, embed financial services, power custom revenue models, and build a more profitable business.
+            </Paragraph>
+            <Paragraph className="intro-description">
+              Join the millions of companies that use Stripe to accept payments online and in person, embed financial services, power custom revenue.
+            </Paragraph>
+            <Button onClick={handleDownload} type="primary" size="large" className="intro-button">
+              Get My Resume
+            </Button>
+          </Col>
+
+          <Col xs={0} md={12} className="intro-image-container">
+            <div className="intro-image">
+              <img src="/image/home/avatar.jpg" alt="Minh Quan" className="intro-image" />
+            </div>
+          </Col>
+        </Row>
+      </div>
       {/* Missions */}
       <div className="missions-container">
         <div className="missions-section">
@@ -195,7 +226,7 @@ function Home() {
             <div className="contact-icons">
               <div className="contact-icons">
                 <Button href="https://www.linkedin.com/in/qu%C3%A2n-v%C3%B5-821704325/" icon={<FaLinkedinIn style={{ color: '#fff' }} />} />
-                <Button href="https://github.com/MinhQuan805" icon={<TbBrandGithubFilled style={{ color: '#fff', height: 20, width: 20 }} />} />
+                <Button href="https://github.com/MinhQuan805"><TbBrandGithubFilled style={{ color: '#fff', height: 20, width: 20 }} /></Button>
                 <Button href="https://www.facebook.com/quan.minh.780514/" icon={<FaFacebookF style={{ color: '#fff' }} />} />
               </div>
 
